@@ -3,8 +3,8 @@
     width: 500px;
 }
 
-.character {
-    background-color: red;
+#character {
+    background-color: rgb(23, 77, 16);
     height: 70px;
     width: 40px;
     position: absolute;
