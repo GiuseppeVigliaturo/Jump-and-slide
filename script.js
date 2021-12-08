@@ -3,34 +3,36 @@
     let isJumping = false
     let isGoingRight = false
     let isGoingLeft = false
-    let princeHigh = 0;
+    let jumpHeight = 0;
     let gravity = 0.9
     let left = 0
     let leftTimerId
     let rightTimerId
 
-    function jump(){
-        
-        let timerUpId = setInterval(function (){
-
-            if (princeHigh > 250) {
-            clearInterval(timerUpId);
-            let timerDownId = setInterval(function(){
-
-                if (princeHigh < 0) {
-                    clearInterval(timerDownId);
-                }
-                princeHigh -= 5;
-                prince.style.bottom = princeHigh + "px";
-            },20)
+    function jump() {
+    if (isJumping) return
+    
+    let upTimerId = setInterval(function () {
+        //jump down
+        if (jumpHeight > 250) {
+        clearInterval(upTimerId)
+        let downTimerId = setInterval(function () {
+            if (jumpHeight < 0 ) {
+            clearInterval(downTimerId)
+            isJumping = false
             }
-            princeHigh += 20;
-            princeHigh * gravity;
-            prince.style.bottom = princeHigh + "px";
+            jumpHeight -= 5
+            jumpHeight = jumpHeight * gravity
+            prince.style.bottom = jumpHeight + 'px'
         },20)
-
-        
         }
+        //jump up
+        isJumping = true
+        jumpHeight +=30
+        jumpHeight = jumpHeight * gravity
+        prince.style.bottom = jumpHeight + 'px'
+    },20)
+    }
 
     //document.addEventListener('keyup',(e) =>console.log("questo è il tasto" + e.key))
     
